@@ -1,0 +1,23 @@
+<div style="text-align:center">
+  <h1>
+   {{ title }}!
+  </h1>
+  <div class="record-block">
+    <div class="recordBtn">
+      <div class="container">
+        <input type="checkbox" id="btn1" />
+        <label for="btn1">
+          <span *ngIf="currentlyRecording === false" (click)="startListening()">REC</span>
+          <span *ngIf="currentlyRecording === true" (click)="stopListening()">STOP</span>
+        </label>
+      </div>
+    </div>
+  </div>    
+  <div id="transcripted">
+    {{transcriptedText | uppercase}}
+  </div>
+ 
+  
+</div>
+
+<router-outlet></router-outlet>

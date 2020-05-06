@@ -1,0 +1,219 @@
+@media screen and (max-width: 1300px) {
+  :host {
+    display: block;
+    padding-left: 60px;
+    padding-right: 30px;
+  }
+}
+
+h1 {
+    font-size: 22px;
+    color: #413C58;
+    line-height: 30px;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    text-align: left;
+}
+
+#transcripted {
+margin: 0 auto;
+color: green;
+font-size: 30px;
+padding: 100px;
+position: float;
+height: 200px;
+width: 500px;
+text-align: center;
+
+}
+
+#stats{
+  color: blueviolet;
+  font-size: 30px;
+  position: float;
+  text-align: center;
+
+
+}
+
+.imageStyling{
+  width: 500px;
+  height: 350px;
+
+}
+
+.record-block {
+  background-color: white;
+  position: relative;
+  font-size: 14px;
+  color: #fff;
+  min-width: 100%;
+ //margin-bottom: 5%;
+  box-sizing: content-box;
+}
+
+.recordBtn {
+    position: relative;
+    width: 120px;
+    display: block;
+    margin: 0px auto;
+  
+}
+.saveDelete {
+    width: 100%;
+}
+$bg: #000;
+$red: rgb(232, 4, 21);
+$white: rgb(232, 4, 21);
+$grey: rgb(232, 4, 21);
+$cont-size: 100px;
+$outer-size: $cont-size - 30;
+$inner-size: $outer-size - 10;
+$border-size: 6px;
+$sec: 1s;
+$bezier: cubic-bezier(.4, -.9, .9, 1);
+
+@mixin animation($name) {
+    @-webkit-keyframes #{$name} {@content;}
+    @-moz-keyframes #{$name} {@content;}
+    @-o-keyframes #{$name} {@content;}
+    @keyframes #{$name} {@content;}
+}
+
+@mixin animation-use($name, $time, $easing) {
+    -webkit-animation: $name $time infinite $easing;
+    -moz-animation: $name $time infinite $easing;
+    -o-animation: $name $time infinite $easing;
+    animation: $name $time infinite $easing;
+}
+
+@mixin animate($val, $colon) {
+    @include animation(to_ + $val) {
+        @for $i from 1 to $val {
+            #{100/$val*$i}% {
+                @if ($i < 10) {
+                    content: $colon + '0' + $i;
+                } @else {
+                    content: $colon + '' + $i;
+                }
+            }
+        }
+    }
+}
+
+@mixin pseudo($content) {
+    position: relative;
+    content: $content;
+}
+
+@mixin center($val) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: $val;
+    height: $val;
+    margin: -$val/2 0 -$val/2;
+}
+
+@mixin delay($time) {
+    -webkit-animation-delay: $time;
+    animation-delay: $time;
+}
+
+@mixin once() {
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+
+
+@include animation(stop) {
+    70% {
+        border-radius: 6px;
+        @include center($inner-size);
+    } 100% {
+        border-radius: 6px;
+        @include center($inner-size);
+    }
+}
+    @keyframes pulse{
+        0% {
+            width: 90px;
+            height: 90px;
+            margin: -45px -45px;
+        }
+        50% {
+            width: 100px;
+            height: 100px;
+            margin: -50px -50px;
+        }
+        100% {
+            width: 90px;
+            height: 90px;
+            margin: -45px -45px;
+        }
+    }
+    .container {
+      display: block;
+        #btn1, #btn2, #btn3 {
+            display: none;
+
+            & + label:before {
+                @include center($outer-size);
+                content: '';
+                -webkit-transform: translate(-$border-size, -$border-size);
+                -ms-transform: translate(-$border-size, -$border-size);
+                transform: translate(-$border-size, -$border-size);
+                border-radius: 50%;
+                border: $border-size solid $white;
+                cursor: pointer;
+            }
+
+            & + label span {
+                color: white;
+                position: absolute;
+                margin: -10px -14px;
+                z-index: 999;
+            }
+
+            & + label:after {
+                @include center($inner-size);
+                content: '';
+                border-radius: $inner-size/2;
+                background: $red;
+                cursor: pointer;
+            }
+
+            &:checked {
+                & + label:after {
+                    @include animation-use(stop, 0.5*$sec, $bezier);
+                    @include once();
+                }
+
+                & + label span {
+                    margin: -10px -15px;
+                }
+
+                & + label:before {
+                    animation-name: pulse;
+                    animation-duration: 1s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: linear;
+                }
+
+                & ~ .time {
+                    @include animation-use(time, 0.3*$sec, linear);
+                    @include once();
+                    animation-delay: 0.3*$sec;
+
+                    .num {
+                        @include animation-use(to_100, $sec, linear);
+                    }
+                }
+            }
+        }
+
+        
+    }
