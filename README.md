@@ -1,10 +1,18 @@
 # VoiceTextApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
+It is a short tutorial on how to setup Google Cloud Speech-to-Text API in an Angular 7 application
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Important Links to Refer
+
+https://nodejs.org/en/download/
+https://www.npmjs.com/package/@angular/cli
+https://www.npmjs.com/search?q=speech-to-text
+https://cloud.google.com/speech-to-text/docs/reference/rest
 
 ## Code scaffolding
 
