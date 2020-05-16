@@ -3,6 +3,8 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 It is a short tutorial on how to setup Google Cloud Speech-to-Text API in an Angular 7 application
 
+Note: Please ensure to not store your API key in your code. It was put in the environment.ts file for the purposes of this tutorial and is not a recommended practice. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
