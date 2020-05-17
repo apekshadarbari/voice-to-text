@@ -13,7 +13,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 https://nodejs.org/en/download/
 https://www.npmjs.com/package/@angular/cli
-https://www.npmjs.com/search?q=speech-to-text
+https://www.npmjs.com/package/speech-to-text-api
 https://cloud.google.com/speech-to-text/docs/reference/rest
 
 ## Video Tutorial
