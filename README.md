@@ -16,10 +16,6 @@ https://www.npmjs.com/package/@angular/cli
 https://www.npmjs.com/package/speech-to-text-api
 https://cloud.google.com/speech-to-text/docs/reference/rest
 
-## Video Tutorial
-
-Video tutorial for this project is available at: https://youtu.be/btFjthETWKY
-
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
