@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CloudSpeechApiService} from './_services/cloud-speech-api.service';
 
 
@@ -10,13 +10,18 @@ import { CloudSpeechApiService} from './_services/cloud-speech-api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'My Transcription App';
   currentlyRecording = false;
   transcriptedText = '';
  
 
   constructor(private CloudSpeechApiService: CloudSpeechApiService) {
+    
+  }
+
+  ngOnInit(){
+
     let initialized = this.CloudSpeechApiService.initializeAPI();
     if(initialized == false){
       alert('Google API Key is Missing. Please configure it and try again.');
