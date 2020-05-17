@@ -45,7 +45,7 @@ text-align: center;
 .record-block {
   background-color: white;
   position: relative;
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   min-width: 100%;
  //margin-bottom: 5%;
@@ -54,7 +54,7 @@ text-align: center;
 
 .recordBtn {
     position: relative;
-    width: 120px;
+    width: 100px;
     display: block;
     margin: 0px auto;
   
@@ -174,7 +174,7 @@ $bezier: cubic-bezier(.4, -.9, .9, 1);
             & + label span {
                 color: white;
                 position: absolute;
-                margin: -10px -14px;
+                margin: -12px -19px;
                 z-index: 999;
             }
 
@@ -193,7 +193,7 @@ $bezier: cubic-bezier(.4, -.9, .9, 1);
                 }
 
                 & + label span {
-                    margin: -10px -15px;
+                    margin: -12px -19px;
                 }
 
                 & + label:before {

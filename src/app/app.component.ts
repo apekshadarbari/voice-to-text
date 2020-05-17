@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { environment } from '../environments/environment';
-import SpeechApi from 'speech-to-text-api';
+import { Component } from '@angular/core';
+import { CloudSpeechApiService} from './_services/cloud-speech-api.service';
+
+
 
 
 
@@ -9,59 +10,44 @@ import SpeechApi from 'speech-to-text-api';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'My Transcription App';
-  googleApiKey="";
-  speechApi;
   currentlyRecording = false;
-  transcriptedText="";
-  
-  constructor(){
-    this.googleApiKey = environment.googleApiKey;
-  }
-  
-  //---------- Initialize Speech API ---------- 
-  ngOnInit() {
-   if(this.googleApiKey === ""){
-
-    console.log("------ Google API key is missing ------");
-   }
-   else {
-
-    this.speechApi = new SpeechApi(this.googleApiKey, {languageCode:'en-US'});
-   }
-   
-  }
+  transcriptedText = '';
  
-  //---------- Method to start listening ---------- 
-  async startListening(){
-      console.log("Started Listening");
-      this.currentlyRecording = true;
-      await this.speechApi.start();
-      
 
-  }
-
-  //---------- Method to stop listening and return transcription----------  
-  async stopListening(){
-    console.log("Stopped Listening");
-    this.currentlyRecording = false;
-    let transcription = await this.speechApi.stop();
-
-    if(transcription !== undefined){
-        this.transcriptedText = transcription[0].alternatives[0].transcript;
-
-
-
-    } else {
-        this.transcriptedText = "Error: Transcription failed. Please try again.";
-
-
+  constructor(private CloudSpeechApiService: CloudSpeechApiService) {
+    let initialized = this.CloudSpeechApiService.initializeAPI();
+    if(initialized == false){
+      alert('Google API Key is Missing. Please configure it and try again.');
 
     }
-    
   }
+
+
+  // ---------- Method to start listening ----------
+
+   startListening() {
+        this.CloudSpeechApiService.startSpeech();
+        this.currentlyRecording = true;
+
+  }
+
+  // ---------- Method to stop listening and display returned transcription----------
+
+    stopListening() {
+   
+      this.CloudSpeechApiService.stopSpeech().then(res => {
+        this.transcriptedText = res;
+        this.currentlyRecording = false;
+
+      })
+     
+
+
   
+  }
+
 }
 
 
